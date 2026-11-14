@@ -51,7 +51,22 @@ constexpr uint32_t EPD_MIN_GAP_MS = 180000;  // min time between e-paper refresh
 constexpr uint32_t WX_REDRAW_MS   = 60UL * 60 * 1000;  // redraw for changed weather at most this often
 constexpr uint32_t WX_EVERY_MS    = 30UL * 60 * 1000;  // weather refresh
 constexpr uint32_t WX_RETRY_MS    = 2UL * 60 * 1000;   // after a failed fetch
-constexpr uint8_t  CLEAR_HOUR     = 3;       // daily anti-ghosting clear, when nobody is seated
+constexpr uint8_t  CLEAR_HOUR     = 3;       // daily anti-ghosting wipe to white (local hour)
+
+// Time zone (POSIX TZ string) and NTP servers. Override any of them in
+// src/secrets.h; the defaults suit Taiwan.
+#ifndef TIME_ZONE
+#define TIME_ZONE "CST-8"  // UTC+8, no daylight saving
+#endif
+#ifndef NTP_SERVER_1
+#define NTP_SERVER_1 "time.stdtime.gov.tw"
+#endif
+#ifndef NTP_SERVER_2
+#define NTP_SERVER_2 "pool.ntp.org"
+#endif
+#ifndef NTP_SERVER_3
+#define NTP_SERVER_3 "time.google.com"
+#endif
 
 static sit::Config makeConfig() {
   sit::Config c;
@@ -96,11 +111,18 @@ struct Buzzer {
 
 // ------------------------------------------------------------------ LEDs ----
 // Quiet by design: the bar stays dark except when it is time to stand up
-// (red blink) or the radar has stopped talking (slow purple blink).
-static void showLeds(const sit::Output& o, bool radarFault, uint32_t now) {
+// (red blink), a break has just been counted (3 green blinks), or the radar
+// has stopped talking (slow purple blink).
+constexpr uint32_t BREAK_BLINK_MS = 250;  // green on/off period after a completed break
+
+static void showLeds(const sit::Output& o, bool radarFault, uint32_t breakDoneAt, uint32_t now) {
   leds.clear();
+  uint32_t sinceBreak = now - breakDoneAt;
   if (radarFault) {
     if ((now / 1000) % 2) for (int i = 0; i < LED_COUNT; i++) leds.setPixelColor(i, 120, 0, 160);
+  } else if (breakDoneAt && sinceBreak < 6 * BREAK_BLINK_MS) {
+    if ((sinceBreak / BREAK_BLINK_MS) % 2 == 0)
+      for (int i = 0; i < LED_COUNT; i++) leds.setPixelColor(i, 0, 200, 0);
   } else if (o.state == sit::State::Overdue) {
     if ((now / 500) % 2) for (int i = 0; i < LED_COUNT; i++) leds.setPixelColor(i, 255, 0, 0);
   }
@@ -287,7 +309,7 @@ void setup() {
     WiFi.mode(WIFI_STA);
     WiFi.setAutoReconnect(true);
     WiFi.begin(WIFI_SSID, WIFI_PASSWORD);  // non-blocking; reconnects on its own
-    configTzTime("CST-8", "time.stdtime.gov.tw", "pool.ntp.org", "time.google.com");
+    configTzTime(TIME_ZONE, NTP_SERVER_1, NTP_SERVER_2, NTP_SERVER_3);
     xTaskCreatePinnedToCore(netTask, "net", 8192, nullptr, 1, nullptr, 0);
     Serial.printf("[wifi] connecting to %s\n", WIFI_SSID);
   } else {
@@ -298,7 +320,7 @@ void setup() {
 }
 
 void loop() {
-  static uint32_t lastSample = 0, lastLog = 0, wxDrawnAt = 0;
+  static uint32_t lastSample = 0, lastLog = 0, wxDrawnAt = 0, breakDoneAt = 0;
   static Screen shown = Screen::Boot;
   static Weather shownWx;
   static DateView shownDate;
@@ -330,7 +352,9 @@ void loop() {
       buzzer.start(1, now);
       Serial.println("[cue] sat down");
     }
-    if (o.breakCompleted) {
+    if (o.breakCompleted) {  // away long enough: 3 beeps + 3 green blinks, in case you're nearby
+      breakDoneAt = now ? now : 1;
+      buzzer.start(3, now);
       Serial.printf("[break] done, breaks=%u\n", o.breaks);
     }
 
@@ -385,6 +409,6 @@ void loop() {
     }
   }
 
-  showLeds(o, fault, now);
+  showLeds(o, fault, breakDoneAt, now);
   delay(10);
 }

@@ -86,19 +86,20 @@ static void short_standup_does_not_reset() {
   s.run(31 * MIN, true);
   CHECK(s.last.state == State::Overdue);
   int before = s.beeps;
-  s.run(119 * SEC, false);
+  s.run(59 * SEC, false);  // just under the 1-minute break
   CHECK(s.last.state == State::Away);
   CHECK(s.beeps == before);  // no beeping while away
   CHECK(s.breaksDone == 0);
   s.run(1 * SEC, true);  // came back too early
   CHECK(s.last.state == State::Overdue);
   CHECK(s.beeps == before + 1);  // reminds immediately (last remind >90s ago)
+  CHECK(s.last.state == State::Overdue);
 }
 
 static void real_break_resets_session() {
   Sim s;
   s.run(31 * MIN, true);
-  s.run(120 * SEC, false);
+  s.run(60 * SEC, false);  // 1 minute away completes the break
   CHECK(s.last.state == State::Empty);
   CHECK(s.breaksDone == 1);
   CHECK(s.last.breaks == 1);

@@ -10,7 +10,7 @@ namespace sit {
 
 struct Config {
   uint32_t sitConfirmMs  = 5000UL;            // presence must last this long to count as "sat down"
-  uint32_t breakMs       = 120000UL;          // absence this long ends the session (counts as a break)
+  uint32_t breakMs       = 60000UL;           // absence this long ends the session (counts as a break)
   uint32_t awayShowMs    = 3000UL;            // absence shorter than this is treated as sensor jitter
   uint32_t sitLimitMs    = 30UL * 60 * 1000;  // remind after this much continuous sitting
   uint32_t warnBeforeMs  = 2UL * 60 * 1000;   // pre-warning window before the limit

@@ -7,14 +7,15 @@ by itself regardless of whether you use the computer, the phone, or both.
 ## Behaviour
 
 The LED bar stays dark and the e-paper never changes while you sit; feedback is
-by buzzer, and the red LEDs only light when it is time to stand.
+by buzzer. The LEDs only light when it is time to stand (red) or when a
+break has been counted (green).
 
 | Situation | What happens |
 |---|---|
 | Sit down for 5 s | Session starts, buzzer beeps once |
 | Stand up (away 3 s) | Buzzer beeps twice; any reminder still sounding stops |
-| Back within 2 min | Buzzer beeps once, session continues |
-| Away 2 min | Break counted, timer resets (silent) |
+| Back within 1 min | Buzzer beeps once, session continues |
+| Away 1 min | Break counted, timer resets; buzzer beeps 3 times and LEDs blink green 3 times |
 | 30 min seated | LEDs blink red, buzzer beeps 3 times; repeats every 90 s with one more beep each time (max 8) |
 | Away 4 h+ | Break counter resets (treated as a new day) |
 | Radar unplugged | LEDs blink purple slowly, e-paper "Radar not found" |
@@ -71,19 +72,73 @@ data on. Follow the printed labels, not wire colours.
 Put the radar facing your torso, about 40–80 cm away. Measured on 2026-11-14:
 seated 30–86 cm, empty chair ~148 cm, so `SEATED_MAX_CM = 100`.
 
-## Build and flash
+The radar reports only distance and whether something moves, not height, so it
+cannot tell sitting from standing on the spot. "Stood up" here means "left the
+seat": standing beside the desk still counts as seated.
+
+## Quick start
+
+1. Install [PlatformIO](https://platformio.org/install/cli) (`pip install platformio`).
+2. Wire the parts as above. Unplug USB while wiring.
+3. Create your local settings file and fill in at least the Wi-Fi name and password:
+   `cp src/secrets.example.h src/secrets.h`
+4. Flash a bench-test build first, so you do not have to sit for 30 minutes:
+   `pio run -e color-demo -t upload` (or `mono-demo` for the black/white panel).
+5. Watch the serial log with `pio device monitor`. Sit down and stand up, and check
+   `dist=` while seated and with the chair empty (see `SEATED_MAX_CM` below).
+6. Flash the normal build: `pio run -e color -t upload` (or `mono`).
+
+## Configuration
+
+Everything you are likely to change. Settings in `src/secrets.h` stay on your
+computer (the file is in `.gitignore`); the rest are constants in the source.
+
+| What | Where | Default | Notes |
+|---|---|---|---|
+| Wi-Fi name / password | `src/secrets.h`: `WIFI_SSID`, `WIFI_PASSWORD` | empty (offline) | 2.4 GHz only. Without Wi-Fi the timer works; date and weather do not |
+| Weather location | `src/secrets.h`: `WEATHER_LAT`, `WEATHER_LON` | central Taipei | Decimal degrees as strings, e.g. `"25.0330"` |
+| Time zone | `src/secrets.h`: `TIME_ZONE` | `"CST-8"` (UTC+8) | POSIX TZ string, e.g. `"JST-9"` |
+| NTP servers | `src/secrets.h`: `NTP_SERVER_1` .. `_3` | `time.stdtime.gov.tw`, `pool.ntp.org`, `time.google.com` | |
+| Panel | build env: `color*` or `mono*` | `color` | See `platformio.ini`, `src/panel.h` |
+| Sitting limit before reminding | `src/sit_logic.h`: `sitLimitMs` | 30 min | |
+| Away time that counts as a break | `src/sit_logic.h`: `breakMs` | 1 min | |
+| Presence needed to count as "sat down" | `src/sit_logic.h`: `sitConfirmMs` | 5 s | Stops a passer-by from starting the timer |
+| Absence needed to count as "stood up" | `src/sit_logic.h`: `awayShowMs` | 3 s | Raise it if you hear stand-up beeps while still seated |
+| Reminder repeat interval | `src/sit_logic.h`: `remindEveryMs` | 90 s | |
+| Seated distance | `src/main.cpp`: `SEATED_MAX_CM` | 100 cm | Set between your seated `dist=` and the empty-chair `dist=` |
+| Buzzer polarity | `src/main.cpp`: `BUZZER_ACTIVE_LOW` | `true` | Flip if the buzzer sounds constantly at boot |
+| LED count / brightness | `src/main.cpp`: `LED_COUNT`, `LED_BRIGHTNESS` | 10, 60 of 255 | |
+| Pins | `src/main.cpp`: `PIN_*` | see Wiring | |
+| Nightly e-paper wipe | `src/main.cpp`: `CLEAR_HOUR` | 3 (03:00) | |
+
+The `*-demo` envs override the times in `makeConfig()` in `src/main.cpp`:
+60 s limit, 20 s break, 10 s repeat.
+
+## Build, test, debug
 
 ```sh
-pio run -e color -t upload        # 4-colour panel, normal: 30 min limit
-pio run -e color-demo -t upload   # 4-colour panel, bench test: 60 s limit, 20 s break, 10 s repeat
+pio run -e color -t upload        # 4-colour panel, normal
+pio run -e color-demo -t upload   # 4-colour panel, bench test
 pio run -e mono -t upload         # black/white panel, normal
 pio run -e mono-demo -t upload    # black/white panel, bench test
 pio device monitor                # serial log, 115200
 ```
 
-Serial commands for testing without the radar: `1` force seated, `0` force not seated, `a` auto.
+Serial log lines:
 
-Host tests:
+| Line | Meaning |
+|---|---|
+| `[state] Sitting seated=1 dist=45cm sit=120s away=0s breaks=2 radar=ok` | Once a second: state, radar distance, session length |
+| `[cue] sat down` / `[cue] stood up` | 1-beep / 2-beep cues |
+| `[remind] #n` | n-th stand-up reminder of this session |
+| `[break] done, breaks=n` | Away long enough; timer reset |
+| `[wx] HTTP 200 (-) parse=ok rssi=-65 ...` | Weather fetch result; on failure the error text |
+| `[net] wifi=up rssi=-64 dBm ip=...` | Once a minute |
+| `[epd] screen=1 ... refreshed in 20979 ms` | E-paper redraw |
+
+Serial commands for testing without the radar: `1` force seated, `0` force not seated, `a` back to radar.
+
+Host tests (no board needed):
 
 ```sh
 g++ -std=c++17 test/test_sit_logic.cpp -o /tmp/t && /tmp/t
@@ -92,13 +147,6 @@ g++ -std=c++17 test/preview_screens.cpp -o /tmp/p && /tmp/p /tmp   # both panel 
 ```
 
 ![Screens on both panels](docs/screens-preview.png)
-
-## Tuning
-
-- `SEATED_MAX_CM` in `src/main.cpp` (default 100): watch `dist=` in the serial log
-  while sitting and while standing beside the chair, set it between the two.
-- `BUZZER_ACTIVE_LOW`: flip if the buzzer sounds constantly at boot.
-- Times: `sit::Config` in `src/sit_logic.h`.
 
 ## Chinese text on the e-paper
 
@@ -116,17 +164,13 @@ To change on-screen text:
    `g++ -std=c++17 test/preview_screens.cpp -o /tmp/p && /tmp/p /tmp`
    (writes one `.ppm` per screen).
 
-## Network: date, time, weather
+## Network: date and weather
 
-Optional; the timer works offline.
-
-1. `cp src/secrets.example.h src/secrets.h` and fill in `WIFI_SSID` / `WIFI_PASSWORD`
-   (2.4 GHz only). `src/secrets.h` holds your password — don't share it.
-2. Time comes from NTP (`time.stdtime.gov.tw`), timezone UTC+8. Used for the date only;
-   there is no clock on screen (this panel cannot partial-refresh).
-3. Weather comes from Open-Meteo every 30 minutes, retry every 2 minutes on failure
-   (a stuck TLS handshake gives up after 15 s). The location defaults to central
-   Taipei; set `WEATHER_LAT` / `WEATHER_LON` in `src/secrets.h` for your own.
+- Date comes from NTP (servers and time zone in Configuration). There is no clock
+  on screen: the 4-colour panel cannot partial-refresh.
+- Weather comes from [Open-Meteo](https://open-meteo.com/) (free, no API key) every
+  30 minutes; on failure it retries every 2 minutes, and a stuck TLS handshake
+  gives up after 15 s. "Today" uses the location's own time zone.
 
 The e-paper only shows date and weather. It redraws when the date changes, when
 weather first arrives, when weather changes (at most once an hour, `WX_REDRAW_MS`),

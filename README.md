@@ -23,6 +23,9 @@ docs/              notes shared across projects
 ```
 
 Build a project from its folder, e.g. `cd seat-timer && pio run -e color -t upload`.
+Each project's README covers wiring, settings and how to test it.
+
+Releases are tagged per project, e.g. `seat-timer/v1.0.0`.
 
 ## Secrets
 

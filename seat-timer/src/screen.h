@@ -172,7 +172,7 @@ void drawScreen(C& c, const Snapshot& s, const Palette& p) {
       drawCentered(c, ZH_L, Y(46), "該站起來了！", fg);
       snprintf(buf, sizeof buf, "已坐 %lu 分鐘", (unsigned long)s.minutes);
       drawCentered(c, ZH_L, Y(100), buf, fg);
-      drawCentered(c, ZH_M, Y(134), "起身離開座位 2 分鐘就會重新計時", fg);
+      drawCentered(c, ZH_M, Y(134), "起身離開座位 1 分鐘就會重新計時", fg);
       break;
     }
 

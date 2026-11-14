@@ -16,7 +16,7 @@
   "https://api.open-meteo.com/v1/forecast?latitude=" WEATHER_LAT "&longitude=" WEATHER_LON \
   "&current=temperature_2m,weather_code"                                                \
   "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" \
-  "&timezone=Asia%2FTaipei&forecast_days=1"
+  "&timezone=auto&forecast_days=1"  /* "today" in the location's own time zone */
 
 inline bool parseWeather(const char* json, Weather& out) {
   JsonDocument doc;
