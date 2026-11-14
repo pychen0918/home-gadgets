@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="820" viewBox="0 0 1000 820" font-family="Helvetica, Arial, sans-serif" font-size="13">
+<rect width="1000" height="820" fill="#ffffff"/>
+<rect x="420" y="180" width="180" height="472" rx="8" fill="#1f4e79" stroke="#123" stroke-width="2"/>
+<text x="510.0" y="406" text-anchor="middle" fill="#fff" font-weight="bold">ESP32</text>
+<text x="510.0" y="426" text-anchor="middle" fill="#cfe" font-size="11">e-Paper Driver Board</text>
+<circle cx="420" cy="200" r="5" fill="#ffd166" stroke="#000"/>
+<text x="430" y="200" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">GND</text>
+<circle cx="420" cy="224" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="224" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P23</text>
+<circle cx="420" cy="248" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="248" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P22</text>
+<circle cx="420" cy="272" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="272" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">TX</text>
+<circle cx="420" cy="296" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="296" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">RX</text>
+<circle cx="420" cy="320" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="320" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P21</text>
+<circle cx="420" cy="344" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="344" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">GND</text>
+<circle cx="420" cy="368" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="368" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P19</text>
+<circle cx="420" cy="392" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="392" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P18</text>
+<circle cx="420" cy="416" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="416" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P5</text>
+<circle cx="420" cy="440" r="5" fill="#ffd166" stroke="#000"/>
+<text x="430" y="440" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">P17</text>
+<circle cx="420" cy="464" r="5" fill="#ffd166" stroke="#000"/>
+<text x="430" y="464" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">P16</text>
+<circle cx="420" cy="488" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="488" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P4</text>
+<circle cx="420" cy="512" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="512" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P0</text>
+<circle cx="420" cy="536" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="536" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P2</text>
+<circle cx="420" cy="560" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="560" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P15</text>
+<circle cx="420" cy="584" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="584" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">NC</text>
+<circle cx="420" cy="608" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="608" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">NC</text>
+<circle cx="420" cy="632" r="5" fill="#bbb" stroke="#000"/>
+<text x="430" y="632" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">NC</text>
+<circle cx="600" cy="200" r="5" fill="#ffd166" stroke="#000"/>
+<text x="590" y="200" text-anchor="end" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">3V3</text>
+<circle cx="600" cy="224" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="224" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">EN</text>
+<circle cx="600" cy="248" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="248" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">SVP</text>
+<circle cx="600" cy="272" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="272" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">SVN</text>
+<circle cx="600" cy="296" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="296" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P34</text>
+<circle cx="600" cy="320" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="320" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P35</text>
+<circle cx="600" cy="344" r="5" fill="#ffd166" stroke="#000"/>
+<text x="590" y="344" text-anchor="end" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">P32</text>
+<circle cx="600" cy="368" r="5" fill="#ffd166" stroke="#000"/>
+<text x="590" y="368" text-anchor="end" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">P33</text>
+<circle cx="600" cy="392" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="392" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P25</text>
+<circle cx="600" cy="416" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="416" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P26</text>
+<circle cx="600" cy="440" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="440" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P27</text>
+<circle cx="600" cy="464" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="464" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P14</text>
+<circle cx="600" cy="488" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="488" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P12</text>
+<circle cx="600" cy="512" r="5" fill="#ffd166" stroke="#000"/>
+<text x="590" y="512" text-anchor="end" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">GND</text>
+<circle cx="600" cy="536" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="536" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">P13</text>
+<circle cx="600" cy="560" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="560" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">NC</text>
+<circle cx="600" cy="584" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="584" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">NC</text>
+<circle cx="600" cy="608" r="5" fill="#bbb" stroke="#000"/>
+<text x="590" y="608" text-anchor="end" dominant-baseline="middle" fill="#9ab" font-size="12" font-weight="normal">NC</text>
+<circle cx="600" cy="632" r="5" fill="#ffd166" stroke="#000"/>
+<text x="590" y="632" text-anchor="end" dominant-baseline="middle" fill="#fff" font-size="12" font-weight="bold">5V</text>
+<text x="420" y="668" font-size="11" fill="#555">header B</text>
+<text x="600" y="668" text-anchor="end" font-size="11" fill="#555">header A</text>
+<rect x="240" y="30" width="620" height="50" rx="6" fill="#e9f5f2" stroke="#333" stroke-width="1.5"/>
+<text x="550.0" y="49.0" text-anchor="middle" dominant-baseline="middle" font-weight="bold">WS2812B 10-LED bar</text>
+<text x="550.0" y="65.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#444">data flows S -> DOUT; V and G pass straight through</text>
+<circle cx="860" cy="42" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="852" y="42" text-anchor="end" dominant-baseline="middle" font-size="12">S</text>
+<circle cx="860" cy="55" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="852" y="55" text-anchor="end" dominant-baseline="middle" font-size="12">V</text>
+<circle cx="860" cy="68" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="852" y="68" text-anchor="end" dominant-baseline="middle" font-size="12">G</text>
+<circle cx="240" cy="42" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="248" y="42" text-anchor="start" dominant-baseline="middle" font-size="12">DOUT</text>
+<circle cx="240" cy="55" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="248" y="55" text-anchor="start" dominant-baseline="middle" font-size="12">V</text>
+<circle cx="240" cy="68" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="248" y="68" text-anchor="start" dominant-baseline="middle" font-size="12">G</text>
+<line x1="240" y1="42" x2="200" y2="42" stroke="#999" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="196" y="42" text-anchor="end" dominant-baseline="middle" font-size="11" fill="#777">not connected</text>
+<rect x="60" y="370" width="140" height="140" rx="6" fill="#f3eefc" stroke="#333" stroke-width="1.5"/>
+<text x="130.0" y="434.0" text-anchor="middle" dominant-baseline="middle" font-weight="bold">LD2410C</text>
+<text x="130.0" y="450.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#444">radar</text>
+<circle cx="200" cy="392" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="192" y="392" text-anchor="end" dominant-baseline="middle" font-size="12">VCC</text>
+<circle cx="200" cy="416" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="192" y="416" text-anchor="end" dominant-baseline="middle" font-size="12">GND</text>
+<circle cx="200" cy="440" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="192" y="440" text-anchor="end" dominant-baseline="middle" font-size="12">RX</text>
+<circle cx="200" cy="464" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="192" y="464" text-anchor="end" dominant-baseline="middle" font-size="12">TX</text>
+<circle cx="200" cy="488" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="192" y="488" text-anchor="end" dominant-baseline="middle" font-size="12">OUT</text>
+<text x="130" y="530" text-anchor="middle" font-size="11" fill="#777">OUT not connected</text>
+<rect x="430" y="84" width="160" height="66" rx="6" fill="#fff6dc" stroke="#333" stroke-width="1.5"/>
+<text x="510.0" y="111.0" text-anchor="middle" dominant-baseline="middle" font-weight="bold">Buzzer</text>
+<text x="510.0" y="127.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#444">active, low-level trigger</text>
+<text x="460" y="142" text-anchor="middle" font-size="10" fill="#333">GND</text>
+<circle cx="460" cy="150" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="510" y="142" text-anchor="middle" font-size="10" fill="#333">VCC</text>
+<circle cx="510" cy="150" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<text x="560" y="142" text-anchor="middle" font-size="10" fill="#333">I/O</text>
+<circle cx="560" cy="150" r="4" fill="#fff" stroke="#333" stroke-width="1.5"/>
+<rect x="310" y="692" width="400" height="70" rx="4" fill="#f4f4f4" stroke="#333" stroke-width="1.5"/>
+<text x="510.0" y="714" text-anchor="middle" font-weight="bold">2.66" e-paper</text>
+<text x="510.0" y="732" text-anchor="middle" font-size="11" fill="#444">colour panel: FPC connector on the board</text>
+<text x="510.0" y="748" text-anchor="middle" font-size="11" fill="#444">mono module: SCK 13, MOSI 14, CS 15, DC 27, RST 26, BUSY 25</text>
+<line x1="510.0" y1="652" x2="510.0" y2="692" stroke="#777" stroke-width="10" stroke-opacity="0.4"/>
+<polyline points="860,42 890,42 890,368 600,368" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="860,42 890,42 890,368 600,368" fill="none" stroke="#2a9d8f" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="860,55 940,55 940,632 600,632" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="860,55 940,55 940,632 600,632" fill="none" stroke="#d62828" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="860,68 915,68 915,512 600,512" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="860,68 915,68 915,512 600,512" fill="none" stroke="#222222" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="240,55 215,55 215,392 200,392" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="240,55 215,55 215,392 200,392" fill="none" stroke="#d62828" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="240,68 228,68 228,416 200,416" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="240,68 228,68 228,416 200,416" fill="none" stroke="#222222" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="200,440 420,440" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="200,440 420,440" fill="none" stroke="#7b2cbf" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="200,464 420,464" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="200,464 420,464" fill="none" stroke="#1d70b8" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="460,150 460,170 395,170 395,200 420,200" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="460,150 460,170 395,170 395,200 420,200" fill="none" stroke="#222222" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="510,150 510,185 620,185 620,200 600,200" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="510,150 510,185 620,185 620,200 600,200" fill="none" stroke="#f77f00" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="560,150 560,165 640,165 640,344 600,344" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<polyline points="560,150 560,165 640,165 640,344 600,344" fill="none" stroke="#c9a227" stroke-width="3" stroke-linejoin="round"/>
+<text x="60" y="572" font-weight="bold">Wires</text>
+<line x1="60" y1="590" x2="90" y2="590" stroke="#d62828" stroke-width="4"/>
+<text x="100" y="590" dominant-baseline="middle">5V</text>
+<line x1="60" y1="610" x2="90" y2="610" stroke="#222222" stroke-width="4"/>
+<text x="100" y="610" dominant-baseline="middle">GND</text>
+<line x1="60" y1="630" x2="90" y2="630" stroke="#f77f00" stroke-width="4"/>
+<text x="100" y="630" dominant-baseline="middle">3.3V</text>
+<line x1="60" y1="650" x2="90" y2="650" stroke="#2a9d8f" stroke-width="4"/>
+<text x="100" y="650" dominant-baseline="middle">LED data (P33)</text>
+<line x1="60" y1="670" x2="90" y2="670" stroke="#1d70b8" stroke-width="4"/>
+<text x="100" y="670" dominant-baseline="middle">radar TX -> P16</text>
+<line x1="60" y1="690" x2="90" y2="690" stroke="#7b2cbf" stroke-width="4"/>
+<text x="100" y="690" dominant-baseline="middle">radar RX -> P17</text>
+<line x1="60" y1="710" x2="90" y2="710" stroke="#c9a227" stroke-width="4"/>
+<text x="100" y="710" dominant-baseline="middle">buzzer I/O (P32)</text>
+<text x="20" y="790" font-size="11" fill="#555">All connections are female Dupont / PH2.0 cables onto header pins; no breadboard, no soldering. Follow the labels printed on each module, not wire colours.</text>
+</svg>

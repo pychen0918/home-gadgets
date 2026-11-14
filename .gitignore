@@ -1,0 +1,10 @@
+# Build output
+.pio/
+*.ppm
+
+# Local secrets (Wi-Fi password, home location) — never commit
+secrets.h
+
+# Tooling noise
+.playwright-mcp/
+.DS_Store
