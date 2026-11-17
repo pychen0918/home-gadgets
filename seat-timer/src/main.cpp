@@ -110,9 +110,10 @@ struct Buzzer {
 } buzzer;
 
 // ------------------------------------------------------------------ LEDs ----
-// Quiet by design: the bar stays dark except when it is time to stand up
-// (red blink), a break has just been counted (3 green blinks), or the radar
-// has stopped talking (slow purple blink).
+// Mostly quiet: one steady LED shows what the radar thinks (green = seated,
+// blue = away, break not yet counted). The whole bar lights only when it is
+// time to stand up (red blink), a break has just been counted (3 green
+// blinks), or the radar has stopped talking (slow purple blink). Empty = dark.
 constexpr uint32_t BREAK_BLINK_MS = 250;  // green on/off period after a completed break
 
 static void showLeds(const sit::Output& o, bool radarFault, uint32_t breakDoneAt, uint32_t now) {
@@ -125,6 +126,10 @@ static void showLeds(const sit::Output& o, bool radarFault, uint32_t breakDoneAt
       for (int i = 0; i < LED_COUNT; i++) leds.setPixelColor(i, 0, 200, 0);
   } else if (o.state == sit::State::Overdue) {
     if ((now / 500) % 2) for (int i = 0; i < LED_COUNT; i++) leds.setPixelColor(i, 255, 0, 0);
+  } else if (o.state == sit::State::Sitting || o.state == sit::State::Warning) {
+    leds.setPixelColor(0, 0, 160, 0);
+  } else if (o.state == sit::State::Away) {
+    leds.setPixelColor(0, 0, 0, 200);
   }
   leds.show();
 }

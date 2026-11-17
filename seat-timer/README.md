@@ -6,16 +6,17 @@ by itself regardless of whether you use the computer, the phone, or both.
 
 ## Behaviour
 
-The LED bar stays dark and the e-paper never changes while you sit; feedback is
-by buzzer. The LEDs only light when it is time to stand (red) or when a
-break has been counted (green).
+The e-paper never changes while you sit. One LED at the input end of the bar
+shows what the radar currently thinks: steady green = seated, steady blue =
+away but the break is not counted yet, dark = nobody. The whole bar lights only
+when it is time to stand (red) or when a break has been counted (green).
 
 | Situation | What happens |
 |---|---|
-| Sit down for 5 s | Session starts, buzzer beeps once |
-| Stand up (away 3 s) | Buzzer beeps twice; any reminder still sounding stops |
+| Sit down for 5 s | Session starts, buzzer beeps once, first LED steady green |
+| Stand up (away 3 s) | Buzzer beeps twice, first LED steady blue; any reminder still sounding stops |
 | Back within 1 min | Buzzer beeps once, session continues |
-| Away 1 min | Break counted, timer resets; buzzer beeps 3 times and LEDs blink green 3 times |
+| Away 1 min | Break counted, timer resets; buzzer beeps 3 times and LEDs blink green 3 times, then dark |
 | 30 min seated | LEDs blink red, buzzer beeps 3 times; repeats every 90 s with one more beep each time (max 8) |
 | Away 4 h+ | Break counter resets (treated as a new day) |
 | Radar unplugged | LEDs blink purple slowly, e-paper "Radar not found" |
